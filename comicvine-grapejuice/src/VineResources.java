@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.xml.crypto.Data;
+
 /*
  * URL: /character
 	Filters
@@ -49,9 +51,9 @@ public class VineResources {
 	ArrayList<String>character_friends;
 	int count_of_issue_appearances;
 	ArrayList<String> creators;
-	date date_added;
-	date date_last_updated;
-	deck
+	Date date_added;
+	Data date_last_updated;
+	/*deck
 	description
 	first_appeared_in_issue
 	gender
@@ -71,5 +73,6 @@ public class VineResources {
 	team_friends
 	teams
 	volume_credits
+	*/
 	
 }
