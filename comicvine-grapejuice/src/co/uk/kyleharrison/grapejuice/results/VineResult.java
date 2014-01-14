@@ -19,13 +19,32 @@ package co.uk.kyleharrison.grapejuice.results;
  */
 
 public class VineResult {
-	
+	private int status_code;
 	private int count_of_issues=0;
 	private int id=0;
 	private String name;
 	private String resource_type="volume";
 	
-	public VineResult(){
+	public VineResult(int status_code){
+		switch(status_code){
+		case 1: // OK
+			break;
+		case 100 : //100:Invalid API Key
+			break;
+		case 101: //101:Object Not Found
+			break;
+		case 102 : //102:Error in URL Format
+			break;
+		case 103: //103:'jsonp' format requires a 'json_callback' argument
+			break;
+		case 104 : //104:Filter Error
+			break;
+		case 105: //105:Subscriber only video is for subscribers only
+			break;
+		}
+	}
+	
+	public void checkStatus_Code(){
 		
 	}
 	
@@ -52,6 +71,14 @@ public class VineResult {
 	}
 	public void setResource_type(String resource_type) {
 		this.resource_type = resource_type;
+	}
+
+	public int getStatus_code() {
+		return status_code;
+	}
+
+	public void setStatus_code(int status_code) {
+		this.status_code = status_code;
 	}
 	
 }
