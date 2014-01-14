@@ -43,17 +43,29 @@ public class CharacterResult {
 	private String deck;
 	private String description;
 	private int first_appeared_in_issue;
-	private enum gender {MALE,FEMALE,OTHER};
+	private String gender;
 	private int id;
 	private Image image;
 	private String name;
-	private enum origin{HUMAN,ALIEN,ROBOT};
+	private String origin;
 	private String publisher;
 	private String real_name;
 	private URL site_detail_url;
 	
 	public CharacterResult() {
 		super();
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getOrigin() {
+		return origin;
+	}
+	public void setOrigin(String origin) {
+		this.origin = origin;
 	}
 	public ArrayList<?> getField_list() {
 		return field_list;

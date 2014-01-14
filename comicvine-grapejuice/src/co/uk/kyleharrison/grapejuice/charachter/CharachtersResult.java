@@ -21,14 +21,14 @@ public class CharachtersResult {
 	private String deck;
 	private String description;
 	private int first_appeared_in_issue;
-	private enum gender {MALE,FEMALE,OTHER};
+	private String gender;
 	private int id;
 	private Image image;
 	private ArrayList<?> issue_credits = new ArrayList<Object>();
 	private ArrayList<?> issues_died_in = new ArrayList<Object>();
 	private ArrayList<?> movies = new ArrayList<Object>();
 	private String name;
-	enum origin{HUMAN,ALIEN,ROBOT};
+	private String origin;
 	private ArrayList<?> powers;
 	private String publisher;
 	private String real_name;
@@ -38,6 +38,19 @@ public class CharachtersResult {
 	private ArrayList<?> team_friends = new ArrayList<Object>();
 	private ArrayList<?> teams = new ArrayList<Object>();
 	private ArrayList<?> volume_credits = new ArrayList<Object>();
+	
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getOrigin() {
+		return origin;
+	}
+	public void setOrigin(String origin) {
+		this.origin = origin;
+	}
 	public ArrayList<?> getField_list() {
 		return field_list;
 	}

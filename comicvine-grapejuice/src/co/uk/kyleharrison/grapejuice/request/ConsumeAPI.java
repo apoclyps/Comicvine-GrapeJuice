@@ -1,4 +1,4 @@
-package co.uk.kyleharrison.grapejuice.search;
+package co.uk.kyleharrison.grapejuice.request;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,6 +8,9 @@ import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -15,6 +18,8 @@ import com.google.gson.JsonObject;
 public class ConsumeAPI {
 
 	public static void main(String [] arguments){
+		
+
 		try {
 			readJsonFromUrl("http://www.comicvine.com/api/issues/?api_key=2736f1620710c52159ba0d0aea337c59bd273816&filter=volume:3976&format=json");
 		} catch (IOException e) {
