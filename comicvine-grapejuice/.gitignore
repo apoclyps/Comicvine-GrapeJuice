@@ -13,6 +13,8 @@ tmp/**
 tmp/**/*
 users/**
 users/**/*
+RemoteSystemsTempFiles/**
+RemoteSystemsTempFiles/**/*
 /build
 /target
 
