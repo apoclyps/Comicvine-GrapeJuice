@@ -1,4 +1,4 @@
-package co.uk.kyleharrison.grapejuice.request;
+package uk.co.kyleharrison.grapejuice.model.request;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class ConsumeAPI {
 		
 
 		try {
-			readJsonFromUrl("http://www.comicvine.com/api/issues/?api_key=2736f1620710c52159ba0d0aea337c59bd273816&filter=volume:3976&format=json");
+			readJsonFromUrl("https://mbchb.dundee.ac.uk/category/year1/feed");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -41,9 +41,9 @@ public class ConsumeAPI {
 	    try {
 	      BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
 	      String jsonText = readAll(rd);
-	      Gson gson = new Gson();
+	   //   Gson gson = new Gson();
 	      JsonObject json = new JsonObject();
-	      json = gson.fromJson(jsonText, JsonObject.class);
+	   //   json = gson.fromJson(jsonText, JsonObject.class);
 	      
 	      System.out.println(jsonText);
 	      

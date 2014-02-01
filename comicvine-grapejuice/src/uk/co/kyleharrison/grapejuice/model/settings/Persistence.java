@@ -1,4 +1,4 @@
-package co.uk.kyleharrison.grapejuice.settings;
+package uk.co.kyleharrison.grapejuice.model.settings;
 
 //A singleton class for persistent settings.
 

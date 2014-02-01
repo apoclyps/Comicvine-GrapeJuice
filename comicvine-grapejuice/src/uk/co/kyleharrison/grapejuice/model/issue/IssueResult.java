@@ -1,4 +1,4 @@
-package co.uk.kyleharrison.grapejuice.issue;
+package uk.co.kyleharrison.grapejuice.model.issue;
 
 import java.util.ArrayList;
 
