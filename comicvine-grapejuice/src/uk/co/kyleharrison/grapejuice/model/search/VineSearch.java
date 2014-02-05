@@ -1,6 +1,6 @@
-package co.uk.kyleharrison.grapejuice.search;
+package uk.co.kyleharrison.grapejuice.model.search;
 
-import co.uk.kyleharrison.grapejuice.results.VineResponses;
+import uk.co.kyleharrison.grapejuice.model.results.VineResponses;
 
 public class VineSearch {
 

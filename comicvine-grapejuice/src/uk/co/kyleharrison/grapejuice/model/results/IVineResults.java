@@ -1,4 +1,4 @@
-package co.uk.kyleharrison.grapejuice.results;
+package uk.co.kyleharrison.grapejuice.model.results;
 
 public interface IVineResults {
 

@@ -1,4 +1,4 @@
-package co.uk.kyleharrison.grapejuice.results;
+package uk.co.kyleharrison.grapejuice.model.results;
 /*
  * status_code	An integer indicating the result of the request. Acceptable values are:
 
