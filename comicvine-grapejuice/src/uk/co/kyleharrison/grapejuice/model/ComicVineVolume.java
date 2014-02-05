@@ -2,7 +2,7 @@ package uk.co.kyleharrison.grapejuice.model;
 
 import java.util.ArrayList;
 
-public class Volume {
+public class ComicVineVolume {
 
 	 public int id;;
      public String name;
