@@ -2,7 +2,18 @@
 <section name="Workbench">
 	<item value="C:\Users\apoclyps\git\comicvine-grapejuice\.git" key="GitSelectRepositoryPage.lastRepository"/>
 	<item value="0" key="org.eclipse.egit.ui.internal.clone.GitSelectWizardPageWizardSel"/>
+	<list key="RepositorySelectionPage.UsedUris">
+		<item value="https://github.com/apoclyps/SoC-E-Health-Server/tree/fc93293640d56ad9801cda5bf378407a7063b72f"/>
+		<item value="https://github.com/apoclyps/Comicvine-GrapeJuice"/>
+	</list>
 	<section name="GitImportWizard">
 		<item value="true" key="GitProjectsImportPage.STORE_NESTED_PROJECTS"/>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.fetch.FetchResultDialog.dialogBounds">
+		<item value="616" key="DIALOG_WIDTH"/>
+		<item value="224" key="DIALOG_Y_ORIGIN"/>
+		<item value="660" key="DIALOG_X_ORIGIN"/>
+		<item value="457" key="DIALOG_HEIGHT"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 </section>
