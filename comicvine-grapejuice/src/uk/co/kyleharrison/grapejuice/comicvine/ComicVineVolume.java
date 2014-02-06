@@ -14,6 +14,10 @@ public class ComicVineVolume {
 	public ComicVineImages images;
 	public ArrayList<ComicVineIssue> list_of_issue;
 
+	public ComicVineVolume() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public ComicVineVolume(int id, String name, String url,
 			int count_of_issues, String volume_description, int start_year,
 			ComicVinePublisher publisher, ComicVineImages images,

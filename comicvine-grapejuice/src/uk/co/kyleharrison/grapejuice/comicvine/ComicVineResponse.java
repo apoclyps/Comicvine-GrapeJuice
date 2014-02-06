@@ -6,6 +6,13 @@ public class ComicVineResponse {
     public String ErrorMessage;
     public String Response;
     
+    public ComicVineResponse() {
+		super();
+		Status = null;
+		ErrorMessage = null;
+		Response = null;
+	}
+    
 	public ComicVineResponse(String status, String errorMessage, String response) {
 		super();
 		Status = status;
