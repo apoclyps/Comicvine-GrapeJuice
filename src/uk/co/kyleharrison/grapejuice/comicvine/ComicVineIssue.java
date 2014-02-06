@@ -48,6 +48,10 @@ public class ComicVineIssue {
 		this.volume = volume;
 	}
 
+	public ComicVineIssue() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}
