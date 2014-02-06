@@ -1,0 +1,42 @@
+*target*
+*.jar
+subs_apns.txt
+subs_gcm.txt
+Certificates.p12
+test.xml
+*.war
+*.p12
+*.ear
+*.class
+
+# eclipse specific git ignore
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+users/**
+users/**/*
+/build
+/target
+
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+/.classpath
+/.classpath/
+/.classpath/*
+.classpath
+.settings/
+.loadpath
+.settings/
+.classpath/
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
