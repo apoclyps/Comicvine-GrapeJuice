@@ -8,19 +8,24 @@ import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Date;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class URLReader {
 
 	private String url;
 	private String response;
+	private Logger logger;
 
 	public URLReader() {
 		super();
+		logger = LoggerFactory.getLogger(URLReader.class);
 	}
 
 	public URLReader(String url) {
 		super();
 		this.url = url;
+		logger = LoggerFactory.getLogger(URLReader.class);
 	}
 
 	public String getUrl() {
@@ -44,7 +49,7 @@ public class URLReader {
 		return sb.toString();
 	}
 
-	public String readFromUrl() throws IOException {
+	public String readFromUrl() {
 		InputStream is = null;
 		try {
 			is = new URL(this.url).openStream();
@@ -56,11 +61,18 @@ public class URLReader {
 			return this.response;
 		} catch (IOException e1) {
 			e1.printStackTrace();
+			logger.info("CLASS : URLReader \t IOException readFromURL \t"+ new Date().toString());
 		} catch (Exception e) {
 			System.out.println("URL Reader Error : " + new Date().toString());
 			e.printStackTrace();
+			logger.info("CLASS : URLReader \t Exception readFromURL \t"+ new Date().toString());
 		}
-		is.close();
+		try {
+			is.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			logger.info("CLASS : URLReader \t IOException closing connection \t"+ new Date().toString());
+		}
 		return null;
 	}
 
