@@ -3,7 +3,7 @@ package uk.co.kyleharrison.grapejuice.service;
 import java.util.ArrayList;
 
 import uk.co.kyleharrison.grapejuice.comicvine.*;
-import uk.co.kyleharrison.grapejuice.enums.*;
+import uk.co.kyleharrison.grapejuice.model.enums.*;
 
 public class ComicVineService {
 
@@ -28,7 +28,7 @@ public class ComicVineService {
     private void Initialize()
     {
         this.SearchType = uk.co.kyleharrison.grapejuice.service.SearchType.Xml;
-        this.MatchType = uk.co.kyleharrison.grapejuice.enums.MatchType.AbsoluteMatch;
+        this.MatchType = uk.co.kyleharrison.grapejuice.model.enums.MatchType.AbsoluteMatch;
         this.SearchAddress = "http://api.comicvine.com/search/";
         this.ComicVineAddress = "http://api.comicvine.com/";
         this.ComicVineBetaAddress = "http://beta.comicvine.com/api/";

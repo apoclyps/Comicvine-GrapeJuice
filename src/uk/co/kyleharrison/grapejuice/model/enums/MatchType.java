@@ -1,4 +1,4 @@
-package uk.co.kyleharrison.grapejuice.enums;
+package uk.co.kyleharrison.grapejuice.model.enums;
 
 public enum MatchType {
     AbsoluteMatch,

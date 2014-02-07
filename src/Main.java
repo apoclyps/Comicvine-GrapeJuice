@@ -1,14 +1,23 @@
+import java.io.File;
+import java.io.IOException;
+
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import uk.co.kyleharrison.grapejuice.comicvine.ComicVineVolume;
 import uk.co.kyleharrison.grapejuice.utils.URLReader;
 
 public class Main {
 
 	public static void main(String[] args) {
 		URLReader urlReader = new URLReader();
-		urlReader.setUrl("http://www.comicvine.com/api/publishers/?api_key=2736f1620710c52159ba0d0aea337c59bd273816&format=json&sort=name&field_list=name,id&offset=2300");;
+		urlReader.setUrl("http://www.comicvine.com/api/publishers/?api_key=2736f1620710c52159ba0d0aea337c59bd273816"
+				+ "&format=json&sort=id:asc&field_list=name,id&offset=0");;
 		String jsonResponse = urlReader.readFromUrl();
 		System.out.println(jsonResponse);
 		
@@ -30,12 +39,40 @@ public class Main {
 					System.out.println(json.get("results"));
 				}
 				
+				//JSONArray jsonArray = (JSONArray)new JSONParser().parse(json.get("results").toString());
+				//System.out.println(jsonArray.toString());
+				JSONArray jsonArray2 = (JSONArray) json.get("results");
+				System.out.println(jsonArray2.toString());
+				
+				for(Object obj : jsonArray2){
+					JSONObject jsoObj = (JSONObject) obj;
+					mapToPojo(jsoObj);
+				}
+				
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
 	}
+		
+		public static void mapToPojo(JSONObject json){
+			ObjectMapper mapper = new ObjectMapper();
+			
+			try {
+				ComicVineVolume user = mapper.readValue(json.toJSONString(), ComicVineVolume.class);
+				System.out.println(user.getId() + " "+ user.getName());
+			} catch (JsonParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JsonMappingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 
 }
