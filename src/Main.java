@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import uk.co.kyleharrison.grapejuice.comicvine.ComicVinePublisher;
 import uk.co.kyleharrison.grapejuice.comicvine.ComicVineVolume;
 import uk.co.kyleharrison.grapejuice.utils.URLReader;
 
@@ -60,8 +61,8 @@ public class Main {
 			ObjectMapper mapper = new ObjectMapper();
 			
 			try {
-				ComicVineVolume user = mapper.readValue(json.toJSONString(), ComicVineVolume.class);
-				System.out.println(user.getId() + " "+ user.getName());
+				ComicVinePublisher user = mapper.readValue(json.toJSONString(), ComicVinePublisher.class);
+				System.out.println(user.getId() + " "+ user.getName()+ " : ");
 			} catch (JsonParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
