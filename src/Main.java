@@ -10,12 +10,21 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import uk.co.kyleharrison.grapejuice.comicvine.ComicVinePublisher;
+import uk.co.kyleharrison.grapejuice.comicvine.ComicVineResponse;
 import uk.co.kyleharrison.grapejuice.comicvine.ComicVineVolume;
+import uk.co.kyleharrison.grapejuice.service.ComicVineConnection;
 import uk.co.kyleharrison.grapejuice.utils.URLReader;
 
 public class Main {
 
 	public static void main(String[] args) {
+		
+		ComicVineConnection cvc = new ComicVineConnection();
+		ComicVineResponse cvr = cvc.ConnectAndRequest("http://www.comicvine.com/api/publishers/?api_key=2736f1620710c52159ba0d0aea337c59bd273816"
+				+ "&format=json&sort=id:asc&field_list=name,id&offset=0");
+		System.out.println("cvr"+cvr.toString());
+		/*
+		
 		URLReader urlReader = new URLReader();
 		urlReader.setUrl("http://www.comicvine.com/api/publishers/?api_key=2736f1620710c52159ba0d0aea337c59bd273816"
 				+ "&format=json&sort=id:asc&field_list=name,id&offset=0");;
@@ -54,7 +63,7 @@ public class Main {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}*/
 	}
 		
 		public static void mapToPojo(JSONObject json){
