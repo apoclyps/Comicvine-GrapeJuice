@@ -3,6 +3,7 @@ package uk.co.kyleharrison.grapejuice;
 import java.io.IOException;
 
 import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.simple.JSONArray;
@@ -53,7 +54,7 @@ public class GrapeVineFacade {
 						if(!(jsoObj.get("name").toString().equals("null"))){
 						System.out.println(jsoObj.get("id")+ " : " +jsoObj.get("name"));
 						}
-					//mapToPojo(jsoObj);
+					mapToPojo(jsoObj);
 					}}
 					catch(NullPointerException e){
 						//e.printStackTrace();

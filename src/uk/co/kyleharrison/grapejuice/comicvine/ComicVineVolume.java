@@ -2,7 +2,7 @@ package uk.co.kyleharrison.grapejuice.comicvine;
 
 import java.util.ArrayList;
 
-public class ComicVineVolume {
+public class ComicVineVolume extends ComicVineBase {
 
 	public int id;;
 	public String name;
