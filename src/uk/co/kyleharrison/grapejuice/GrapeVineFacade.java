@@ -1,6 +1,7 @@
 package uk.co.kyleharrison.grapejuice;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
@@ -15,11 +16,22 @@ import uk.co.kyleharrison.grapejuice.comicvine.ComicVineVolume;
 import uk.co.kyleharrison.grapejuice.utils.URLReader;
 
 public class GrapeVineFacade {
+	
+	static ArrayList <ComicVineVolume> comicVineVolumes;
 
 	public GrapeVineFacade(){
 		super();
+		comicVineVolumes = new ArrayList<ComicVineVolume>();
 	}
 	
+	public ArrayList<ComicVineVolume> getComicVineVolumes() {
+		return comicVineVolumes;
+	}
+
+	public void setComicVineVolumes(ArrayList<ComicVineVolume> comicVineVolumes) {
+		this.comicVineVolumes = comicVineVolumes;
+	}
+
 	public String PreformQuery(String query){
 		URLReader urlReader = new URLReader();
 		urlReader.setUrl(query);;
@@ -73,9 +85,12 @@ public class GrapeVineFacade {
 	public static void mapToPojo(JSONObject json){
 		ObjectMapper mapper = new ObjectMapper();
 		
+		comicVineVolumes = new ArrayList<ComicVineVolume>();
+		
 		try {
-			ComicVineVolume user = mapper.readValue(json.toJSONString(), ComicVineVolume.class);
-			System.out.println(user.getId() + " "+ user.getName());
+			ComicVineVolume comicVineVolume = mapper.readValue(json.toJSONString(), ComicVineVolume.class);
+			comicVineVolumes.add(comicVineVolume);
+			System.out.println(comicVineVolume.getId() + " "+ comicVineVolume.getName());
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
