@@ -8,7 +8,10 @@ test.xml
 *.p12
 *.ear
 *.class
-
+*.metadata
+/metadata
+.metadata
+.metadata/**
 # eclipse specific git ignore
 *.pydevproject
 .project
