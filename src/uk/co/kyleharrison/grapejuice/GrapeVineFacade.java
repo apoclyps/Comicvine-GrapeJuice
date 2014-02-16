@@ -17,13 +17,49 @@ import uk.co.kyleharrison.grapejuice.utils.URLReader;
 
 public class GrapeVineFacade {
 	
-	static ArrayList <ComicVineVolume> comicVineVolumes;
+	private ArrayList <ComicVineVolume> comicVineVolumes;
+	private long limit =100;
+	private long offset=0;
+	private long number_of_page_results=0;
+	private long number_of_total_results=0;
 
 	public GrapeVineFacade(){
 		super();
 		comicVineVolumes = new ArrayList<ComicVineVolume>();
 	}
 	
+	public long getLimit() {
+		return limit;
+	}
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+
+	public long getOffset() {
+		return offset;
+	}
+
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+
+	public long getNumber_of_page_result() {
+		return number_of_page_results;
+	}
+
+	public void setNumber_of_page_result(int number_of_page_result) {
+		this.number_of_page_results = number_of_page_result;
+	}
+
+	public long getNumber_of_total_results() {
+		return number_of_total_results;
+	}
+
+	public void setNumber_of_total_results(int number_of_total_results) {
+		this.number_of_total_results = number_of_total_results;
+	}
+
 	public ArrayList<ComicVineVolume> getComicVineVolumes() {
 		return comicVineVolumes;
 	}
@@ -56,8 +92,15 @@ public class GrapeVineFacade {
 					//System.out.println(json.get("results"));
 				}
 				
+				number_of_page_results = (long) json.get("number_of_page_results");
+				limit = (long) json.get("limit");
+				offset = (long) json.get("offset");
+				number_of_total_results = (long) json.get("number_of_total_results");
+				
 				JSONArray jsonArray2 = (JSONArray) json.get("results");
 				System.out.println(jsonArray2.toString());
+				
+				this.comicVineVolumes = new ArrayList<ComicVineVolume>();
 				
 				for(Object obj : jsonArray2){
 					JSONObject jsoObj = (JSONObject) obj;
@@ -82,14 +125,12 @@ public class GrapeVineFacade {
 		return json.toString();
 	}
 	
-	public static void mapToPojo(JSONObject json){
+	public void mapToPojo(JSONObject json){
 		ObjectMapper mapper = new ObjectMapper();
-		
-		comicVineVolumes = new ArrayList<ComicVineVolume>();
 		
 		try {
 			ComicVineVolume comicVineVolume = mapper.readValue(json.toJSONString(), ComicVineVolume.class);
-			comicVineVolumes.add(comicVineVolume);
+			this.comicVineVolumes.add(comicVineVolume);
 			System.out.println(comicVineVolume.getId() + " "+ comicVineVolume.getName());
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
