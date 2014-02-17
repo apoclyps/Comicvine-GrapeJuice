@@ -3,7 +3,8 @@ package uk.co.kyleharrison.test.grapejuice.suite;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
-import uk.co.kyleharrison.test.grapejuice.issue.IssueResultTest;
+
+import uk.co.kyleharrison.test.grapejuice.model.IssueResultTest;
 
 public class GrapeJuiceTestRunner {
 	

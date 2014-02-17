@@ -1,4 +1,4 @@
-package uk.co.kyleharrison.test.grapejuice.issue;
+package uk.co.kyleharrison.test.grapejuice.model;
 
 import static org.junit.Assert.assertEquals;
 

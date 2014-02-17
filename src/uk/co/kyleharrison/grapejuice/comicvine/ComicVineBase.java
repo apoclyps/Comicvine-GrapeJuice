@@ -3,6 +3,15 @@ package uk.co.kyleharrison.grapejuice.comicvine;
 public class ComicVineBase {
 
 	private String resource_type;
+	
+	public ComicVineBase() {
+		super();
+	}
+
+	public ComicVineBase(String resource_type) {
+		super();
+		this.resource_type = resource_type;
+	}
 
 	public String getResource_type() {
 		return resource_type;
