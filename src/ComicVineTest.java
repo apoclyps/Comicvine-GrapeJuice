@@ -41,12 +41,7 @@ public class ComicVineTest {
 		}
 		}
 		System.out.println(cvv.size());
-		
-		for(ComicVineVolume cv : cvv){
-			//System.out.println(cv.name);
-		}
-		
-			
+				
 	}
 	
 	public void preformQuery(String queryRequest){

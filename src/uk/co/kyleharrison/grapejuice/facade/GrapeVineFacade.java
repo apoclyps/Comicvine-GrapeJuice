@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.simple.JSONArray;
@@ -17,7 +16,7 @@ import uk.co.kyleharrison.grapejuice.utils.URLReader;
 
 public class GrapeVineFacade {
 	
-	static ArrayList <ComicVineVolume> comicVineVolumes;
+	private ArrayList <ComicVineVolume> comicVineVolumes;
 
 	public GrapeVineFacade(){
 		super();
@@ -82,23 +81,20 @@ public class GrapeVineFacade {
 		return json.toString();
 	}
 	
-	public static void mapToPojo(JSONObject json){
+	public  void mapToPojo(JSONObject json){
 		ObjectMapper mapper = new ObjectMapper();
 		
-		comicVineVolumes = new ArrayList<ComicVineVolume>();
+		this.comicVineVolumes = new ArrayList<ComicVineVolume>();
 		
 		try {
 			ComicVineVolume comicVineVolume = mapper.readValue(json.toJSONString(), ComicVineVolume.class);
 			comicVineVolumes.add(comicVineVolume);
 			System.out.println(comicVineVolume.getId() + " "+ comicVineVolume.getName());
 		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
