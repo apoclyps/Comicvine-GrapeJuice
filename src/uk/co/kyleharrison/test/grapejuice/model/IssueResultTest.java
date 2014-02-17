@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import uk.co.kyleharrison.grapejuice.model.issue.IssueResult;
+import uk.co.kyleharrison.grapejuice.model.IssueResult;
 
 
 //http://www.vogella.com/tutorials/JUnit/article.html

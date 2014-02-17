@@ -1,4 +1,4 @@
-package uk.co.kyleharrison.grapejuice.model.search;
+package uk.co.kyleharrison.grapejuice.model;
 
 import uk.co.kyleharrison.grapejuice.model.results.VineResponses;
 

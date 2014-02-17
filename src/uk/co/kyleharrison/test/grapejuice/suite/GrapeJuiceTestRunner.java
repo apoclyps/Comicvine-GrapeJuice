@@ -9,7 +9,7 @@ import uk.co.kyleharrison.test.grapejuice.model.IssueResultTest;
 public class GrapeJuiceTestRunner {
 	
 	public static void main(String[] args) {
-	    Result result = JUnitCore.runClasses(IssueResultTest.class);
+	    Result result = JUnitCore.runClasses(ModelTestSuite.class);
 	    for (Failure failure : result.getFailures()) {
 	      System.out.println(failure.toString());
 	    }
