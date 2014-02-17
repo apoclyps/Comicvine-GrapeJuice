@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 import uk.co.kyleharrison.grapejuice.GrapeVineFacade;
 import uk.co.kyleharrison.grapejuice.comicvine.ComicVineVolume;
-import uk.co.kyleharrison.mysql.MySQLFacade;
+import uk.co.kyleharrison.grapejuice.storage.MySQLFacade;
 
 public class ComicVineTest {
 

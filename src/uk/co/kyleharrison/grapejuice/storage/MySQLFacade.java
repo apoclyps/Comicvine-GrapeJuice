@@ -1,4 +1,4 @@
-package uk.co.kyleharrison.mysql;
+package uk.co.kyleharrison.grapejuice.storage;
 
 import java.sql.SQLException;
 
