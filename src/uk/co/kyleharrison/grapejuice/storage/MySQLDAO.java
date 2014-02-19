@@ -20,17 +20,25 @@ public class MySQLDAO extends MySQLConnector {
 
 			preparedStatement.setInt(1, volumeID);
 			preparedStatement.setString(2, volumeName);
-			/*
-			preparedStatement.setString(3, rssChannel.getDescription());
-			preparedStatement.setTimestamp(4, new java.sql.Timestamp(rssChannel
-					.getLastBuildDate().getTime()));
-			preparedStatement.setString(5, rssChannel.getLanguage());
-			preparedStatement.setString(6, rssChannel.getUpdatePeriod());
-			preparedStatement.setInt(7, rssChannel.getUpdateFrequency());
-			preparedStatement
-					.setString(8, rssChannel.getGenerator().toString());
-					*/
+
 			preparedStatement.executeUpdate();
+		} else {
+			System.out.println("MYSQLDOA : Insert Channel : Connection Failed");
+		}
+		if (connection != null) {
+			connection.close();
+		}
+	}
+
+	public void removeVolume(int volumeID, String volumeName) throws SQLException {
+		if (this.checkConnection()) {
+			preparedStatement = connection
+					.prepareStatement("DELETE FROM comicdb.volumes WHERE volumeID = ? AND volumeName = ?;");
+
+			preparedStatement.setInt(1, volumeID);
+			preparedStatement.setString(2, volumeName);
+
+			preparedStatement.execute();
 		} else {
 			System.out.println("MYSQLDOA : Insert Channel : Connection Failed");
 		}

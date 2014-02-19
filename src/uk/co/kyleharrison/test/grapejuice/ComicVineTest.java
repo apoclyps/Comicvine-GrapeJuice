@@ -1,26 +1,32 @@
+package uk.co.kyleharrison.test.grapejuice;
+
 import java.util.ArrayList;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import uk.co.kyleharrison.grapejuice.comicvine.ComicVineVolume;
 import uk.co.kyleharrison.grapejuice.facade.GrapeVineFacade;
-import uk.co.kyleharrison.grapejuice.storage.MySQLFacade;
 
 public class ComicVineTest {
 
-	private MySQLFacade mysqlFacade;
-	private static GrapeVineFacade grapeVineFacade;
+	private GrapeVineFacade grapeVineFacade;
 	
-	public static void main(String[] arguments) {
+	@Before
+	public void setUp() throws Exception {
+		grapeVineFacade = new GrapeVineFacade();
+	}
+	
+	public void testQuery(){
 		String query="X-men";
 		String queryRequest = "http://www.comicvine.com/api/search/?api_key=2736f1620710c52159ba0d0aea337c59bd273816"
 				+ "&format=json&field_list=name,id&resources=volume&query=";
 				
-		
 		// Returns First / last issue of series as a volume
 		//http://www.comicvine.com/api/search/?api_key=2736f1620710c52159ba0d0aea337c59bd273816&format=json&query=X-men&page=1&resources=volume
 		grapeVineFacade = new GrapeVineFacade();
 		grapeVineFacade.PreformQuery(queryRequest+ query);
 		ArrayList <ComicVineVolume> cvv = grapeVineFacade.getComicVineVolumes();
-		
 		
 		//OUTPUT
 		//System.out.println("\n new data "+grapeVineFacade.getComicVineVolumes().get(0).getName());
@@ -41,23 +47,23 @@ public class ComicVineTest {
 		}
 		}
 		System.out.println(cvv.size());
-				
 	}
-	
+
 	public void preformQuery(String queryRequest){
 		grapeVineFacade.PreformQuery(queryRequest);
 	}
 	
-	public void databaseInsert(GrapeVineFacade grapeVineFacade){
-		mysqlFacade = new MySQLFacade();
-		//mysqlFacade.insertVolume(grapeVineFacade.getComicVineVolumes().get(0).getId(), grapeVineFacade.getComicVineVolumes().get(0).getName());
-		mysqlFacade.insertVolume(1,"Uncanny X-Men: The Complete Collection By Matt Fraction");
+	@Test
+	public void testDefaultQuery(){
+		defaultQuery("Batman");
 	}
 	
 	public void defaultQuery(String query){
 		GrapeVineFacade grapeVineFacade = new GrapeVineFacade();
 		grapeVineFacade.PreformQuery("http://www.comicvine.com/api/search/?api_key=2736f1620710c52159ba0d0aea337c59bd273816"
 						+ "&format=json&field_list=name,id&query=" + query);
+		ArrayList <ComicVineVolume> cvv = grapeVineFacade.getComicVineVolumes();
+		assert(cvv.isEmpty()==false);
 	}
-
+	
 }

@@ -38,4 +38,13 @@ public class MySQLFacade implements MySQLInterface {
 		this.connection.close();
 	}
 
+	public boolean removeVolume(int volumeID, String volumeName) {
+		try {
+			connection.removeVolume(volumeID,volumeName);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 }
