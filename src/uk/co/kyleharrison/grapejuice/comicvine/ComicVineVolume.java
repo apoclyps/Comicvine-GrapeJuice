@@ -4,18 +4,18 @@ import java.util.ArrayList;
 
 public class ComicVineVolume extends ComicVineBase {
 
-	public int id;;
-	public String name;
-	public String url;
-	public int count_of_issues;
-	public String volume_description;
-	public int start_year;
-	public ComicVinePublisher publisher;
-	public ComicVineImages images;
-	public ArrayList<ComicVineIssue> list_of_issue;
+	private String url;
+	private int count_of_issues;
+	private String volume_description;
+	private int start_year;
+	private ComicVinePublisher publisher;
+	private ComicVineImages images;
+	private ArrayList<ComicVineIssue> list_of_issue;
+	private ComicVineIssue first_issue;
+	private ComicVineIssue last_issue;
 
 	public ComicVineVolume() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public ComicVineVolume(int id, String name, String url,
@@ -32,22 +32,6 @@ public class ComicVineVolume extends ComicVineBase {
 		this.publisher = publisher;
 		this.images = images;
 		this.list_of_issue = list_of_issue;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getUrl() {
@@ -105,5 +89,22 @@ public class ComicVineVolume extends ComicVineBase {
 	public void setList_of_issue(ArrayList<ComicVineIssue> list_of_issue) {
 		this.list_of_issue = list_of_issue;
 	}
+
+	public ComicVineIssue getFirst_issue() {
+		return first_issue;
+	}
+
+	public void setFirst_issue(ComicVineIssue first_issue) {
+		this.first_issue = first_issue;
+	}
+
+	public ComicVineIssue getLast_issue() {
+		return last_issue;
+	}
+
+	public void setLast_issue(ComicVineIssue last_issue) {
+		this.last_issue = last_issue;
+	}
+
 
 }

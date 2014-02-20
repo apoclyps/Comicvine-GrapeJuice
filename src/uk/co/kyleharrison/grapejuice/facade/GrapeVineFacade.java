@@ -27,6 +27,10 @@ public class GrapeVineFacade {
 		comicVineVolumes = new ArrayList<ComicVineVolume>();
 	}
 
+	public String run(String query) {
+		return PreformQuery(query);
+	}
+
 	public long getLimit() {
 		return limit;
 	}
@@ -72,25 +76,12 @@ public class GrapeVineFacade {
 		urlReader.setUrl(query);
 		;
 		String jsonResponse = urlReader.readFromUrl();
-		System.out.println(jsonResponse);
+		// System.out.println(jsonResponse);
 		JSONObject json = null;
 		if (jsonResponse != null) {
 			try {
 				json = (JSONObject) new JSONParser().parse(jsonResponse);
-				System.out.println(json);
-
-				// System.out.println(json.get("error").toString());
-				// System.out.println(json.get("status_code"));
-
-				if (Integer.parseInt(json.get("status_code").toString()) == 1) {
-					// System.out.println(json.get("status_code"));
-					// System.out.println(json.get("results"));
-				}
-
-				if (json.get("error").toString().equalsIgnoreCase("OK")) {
-					// System.out.println(json.get("error"));
-					// System.out.println(json.get("results"));
-				}
+				// System.out.println(json);
 
 				number_of_page_results = (long) json
 						.get("number_of_page_results");
@@ -100,7 +91,7 @@ public class GrapeVineFacade {
 						.get("number_of_total_results");
 
 				JSONArray jsonArray2 = (JSONArray) json.get("results");
-				System.out.println(jsonArray2.toString());
+				 System.out.println(jsonArray2.toString());
 
 				this.comicVineVolumes = new ArrayList<ComicVineVolume>();
 
@@ -108,20 +99,22 @@ public class GrapeVineFacade {
 					JSONObject jsoObj = (JSONObject) obj;
 					try {
 						if (jsoObj.containsKey("name")) {
-							if (!(jsoObj.get("name").toString().equals("null"))) {
-								System.out.println(jsoObj.get("id") + " : "
-										+ jsoObj.get("name"));
-							}
+							/*
+							 * if
+							 * (!(jsoObj.get("name").toString().equals("null")))
+							 * { System.out.println(jsoObj.get("id") + " : " +
+							 * jsoObj.get("name")); }
+							 */
 							mapToPojo(jsoObj);
 						}
 					} catch (NullPointerException e) {
-						// e.printStackTrace();
+						e.printStackTrace();
 					}
 				}
-				System.out.println("Total Results : " + jsonArray2.size());
+				System.out.println("Loading : " + jsonArray2.size()
+						+ " Results");
 
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -135,16 +128,15 @@ public class GrapeVineFacade {
 			ComicVineVolume comicVineVolume = mapper.readValue(
 					json.toJSONString(), ComicVineVolume.class);
 			this.comicVineVolumes.add(comicVineVolume);
-			System.out.println(comicVineVolume.getId() + " "
-					+ comicVineVolume.getName());
+			/*
+			 * System.out.println(comicVineVolume.getId() + " " +
+			 * comicVineVolume.getName());
+			 */
 		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
