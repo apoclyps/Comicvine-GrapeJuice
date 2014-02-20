@@ -2,7 +2,9 @@ package uk.co.kyleharrison.grapejuice.comicvine;
 
 public class ComicVineBase {
 
-	private String resource_type;
+	protected String resource_type;
+	protected int id;
+	protected String name;
 	
 	public ComicVineBase() {
 		super();
@@ -20,5 +22,22 @@ public class ComicVineBase {
 	public void setResource_type(String resource_type) {
 		this.resource_type = resource_type;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	
 }
