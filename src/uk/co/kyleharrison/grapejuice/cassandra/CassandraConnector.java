@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import uk.co.kyleharrison.grapejuice.comicvine.ComicVineVolume;
 
 public class CassandraConnector {
 
@@ -45,7 +48,7 @@ public class CassandraConnector {
 	}
 	
 	public boolean createColumnFamily() {
-		String statement = "CREATE columnfamily comicvinevolumes (key int primary key, category text , linkcounts int ,url text)";
+		String statement = "CREATE columnfamily comicvinevolumes (key int primary key, name text , issue_count, int year)";
 		try {
 			Statement st = this.connection.createStatement();
 			return st.execute(statement);
@@ -55,7 +58,7 @@ public class CassandraConnector {
 		}
 		
 	}
-
+	
 	public boolean dropColumnFamily(String name) {
 		String data = "drop columnfamily " + name + ";";
 		Statement st;
@@ -67,5 +70,18 @@ public class CassandraConnector {
 			return false;
 		}
 		
+	}
+	
+	public void insertComicVineVolumes(ArrayList<ComicVineVolume> volumeList) throws SQLException {
+		String data = "BEGIN BATCH \n";
+		
+		for(ComicVineVolume cvv : volumeList){
+			data +=  "insert into comicvinevolumes (key, name, issue_count,year) values ("+cvv.getId()+",'"+cvv.getName().replaceAll("'", " ")
+					+"',"+cvv.getCount_of_issues()+","+ cvv.getStart_year() +") \n";
+		}
+		data += "APPLY BATCH;";
+		
+		Statement st = this.connection.createStatement();
+		st.executeUpdate(data);
 	}
 }

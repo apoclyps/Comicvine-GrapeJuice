@@ -1,5 +1,7 @@
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import uk.co.kyleharrison.grapejuice.cassandra.CassandraConnector;
 import uk.co.kyleharrison.grapejuice.comicvine.ComicVineVolume;
 import uk.co.kyleharrison.grapejuice.facade.GrapeVineFacade;
 import uk.co.kyleharrison.grapejuice.storage.MySQLFacade;
@@ -26,13 +28,13 @@ public class ComicVineTest {
 
 		int page = 2;
 		while (page != (remainder + 2)) {
-			//grapeVineFacade.PreformQuery(queryRequest + query + "&page=" + page);
+			grapeVineFacade.PreformQuery(queryRequest + query + "&page=" + page);
 
 			if (grapeVineFacade.getNumber_of_page_result() != 0) {
 				cvv.addAll(grapeVineFacade.getComicVineVolumes());
 				page++;
-				grapeVineFacade.setNumber_of_page_result(0);
-				break;
+				//grapeVineFacade.setNumber_of_page_result(0);
+				//break;
 			}
 		}
 		System.out.println("Expected Size = "
@@ -40,10 +42,14 @@ public class ComicVineTest {
 		System.out.println("Actual Size = " + cvv.size());
 		System.out.println("Expected Pages = " + (remainder + 1));
 		
-		try{
-			System.out.println(cvv.get(0).getCount_of_issues());
-		}catch(Exception e){
-			
+		CassandraConnector cc = new CassandraConnector();
+		cc.checkConnection();
+		//cc.dropColumnFamily("comicVineVolumes");
+	//	cc.createColumnFamily();
+		try {
+			cc.insertComicVineVolumes(cvv);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -57,6 +63,20 @@ public class ComicVineTest {
 		// grapeVineFacade.getComicVineVolumes().get(0).getName());
 		mysqlFacade.insertVolume(1,
 				"Uncanny X-Men: The Complete Collection By Matt Fraction");
+	}
+	
+	public void cassandraInsert(ArrayList<ComicVineVolume> cvv){
+		CassandraConnector cc = new CassandraConnector();
+		cc.checkConnection();
+		//cc.dropColumnFamily("comicVineVolume");
+		//cc.createColumnFamily();
+		try {
+			cc.insertComicVineVolumes(cvv);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public void defaultQuery(String query) {
