@@ -20,7 +20,7 @@ public class ComicVineTest {
 	public void testQuery(){
 		String query="X-men";
 		String queryRequest = "http://www.comicvine.com/api/search/?api_key=2736f1620710c52159ba0d0aea337c59bd273816"
-				+ "&format=json&field_list=name,id&resources=volume&query=";
+				+ "&format=json&field_list=name,id,image&resources=volume&query=";
 				
 		// Returns First / last issue of series as a volume
 		//http://www.comicvine.com/api/search/?api_key=2736f1620710c52159ba0d0aea337c59bd273816&format=json&query=X-men&page=1&resources=volume
@@ -47,6 +47,10 @@ public class ComicVineTest {
 		}
 		}
 		System.out.println(cvv.size());
+		
+		for(ComicVineVolume cv : cvv){
+			System.out.println(cv.getImage().getThumb_url());
+		}
 	}
 
 	public void preformQuery(String queryRequest){
@@ -56,12 +60,13 @@ public class ComicVineTest {
 	@Test
 	public void testDefaultQuery(){
 		defaultQuery("Batman");
+		//testQuery();
 	}
 	
 	public void defaultQuery(String query){
 		GrapeVineFacade grapeVineFacade = new GrapeVineFacade();
 		grapeVineFacade.PreformQuery("http://www.comicvine.com/api/search/?api_key=2736f1620710c52159ba0d0aea337c59bd273816"
-						+ "&format=json&field_list=name,id&query=" + query);
+						+ "&format=json&field_list=name,id,image&query=" + query);
 		ArrayList <ComicVineVolume> cvv = grapeVineFacade.getComicVineVolumes();
 		assert(cvv.isEmpty()==false);
 	}

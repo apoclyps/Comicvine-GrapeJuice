@@ -9,6 +9,10 @@ public class ComicVineImages {
     public String thumb_url;
     public String tiny_url;
     
+	public ComicVineImages() {
+		super();
+	}
+
 	public ComicVineImages(String icon_url, String medium_url,
 			String screen_url, String small_url, String super_url,
 			String thumb_url, String tiny_url) {

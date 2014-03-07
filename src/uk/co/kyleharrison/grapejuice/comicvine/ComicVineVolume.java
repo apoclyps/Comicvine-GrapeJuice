@@ -9,18 +9,18 @@ public class ComicVineVolume extends ComicVineBase {
 	private String volume_description;
 	private int start_year;
 	private ComicVinePublisher publisher;
-	private ComicVineImages images;
+	private ComicVineImages image;
 	private ArrayList<ComicVineIssue> list_of_issue;
 	private ComicVineIssue first_issue;
 	private ComicVineIssue last_issue;
 
 	public ComicVineVolume() {
-		
+		super();
 	}
 
 	public ComicVineVolume(int id, String name, String url,
 			int count_of_issues, String volume_description, int start_year,
-			ComicVinePublisher publisher, ComicVineImages images,
+			ComicVinePublisher publisher, ComicVineImages image,
 			ArrayList<ComicVineIssue> list_of_issue) {
 		super();
 		this.id = id;
@@ -30,13 +30,22 @@ public class ComicVineVolume extends ComicVineBase {
 		this.volume_description = volume_description;
 		this.start_year = start_year;
 		this.publisher = publisher;
-		this.images = images;
+		this.image = image;
 		this.list_of_issue = list_of_issue;
 	}
 
 	public String getUrl() {
 		return url;
 	}
+	
+	public ComicVineImages getImage() {
+		return image;
+	}
+
+	public void setImage(ComicVineImages image) {
+		this.image = image;
+	}
+
 
 	public void setUrl(String url) {
 		this.url = url;
@@ -72,14 +81,6 @@ public class ComicVineVolume extends ComicVineBase {
 
 	public void setPublisher(ComicVinePublisher publisher) {
 		this.publisher = publisher;
-	}
-
-	public ComicVineImages getImages() {
-		return images;
-	}
-
-	public void setImages(ComicVineImages images) {
-		this.images = images;
 	}
 
 	public ArrayList<ComicVineIssue> getList_of_issue() {

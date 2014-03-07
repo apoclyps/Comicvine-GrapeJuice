@@ -1,5 +1,7 @@
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import uk.co.kyleharrison.grapejuice.cassandra.CassandraConnector;
 import uk.co.kyleharrison.grapejuice.comicvine.ComicVineVolume;
@@ -13,7 +15,7 @@ public class ComicVineTest {
 
 	public static void main(String[] arguments) {
 		String query = "X-men";
-		String resources = "name,id,first_issue,last_issue,count_of_issues";
+		String resources = "name,id,first_issue,last_issue,count_of_issues,images";
 		String queryRequest = "http://www.comicvine.com/api/search/?api_key=2736f1620710c52159ba0d0aea337c59bd273816"
 				+ "&format=json&field_list="+resources+"&resources=volume&query=";
 
@@ -24,35 +26,38 @@ public class ComicVineTest {
 		ArrayList<ComicVineVolume> cvv = grapeVineFacade.getComicVineVolumes();
 
 		// OUTPUT
-		int remainder = (int) (grapeVineFacade.getNumber_of_total_results() / 100);
-
-		int page = 2;
-		while (page != (remainder + 2)) {
-			grapeVineFacade.PreformQuery(queryRequest + query + "&page=" + page);
+		int remainder = (int) (Math.ceil(grapeVineFacade.getNumber_of_total_results() / 100)) ;
+		System.out.println(remainder);
+		int page = 1;
+	/*	while (page != remainder) {
+			grapeVineFacade.PreformQuery(queryRequest + query + "&page=" + (page+1));
 
 			if (grapeVineFacade.getNumber_of_page_result() != 0) {
 				cvv.addAll(grapeVineFacade.getComicVineVolumes());
-				page++;
 				//grapeVineFacade.setNumber_of_page_result(0);
 				//break;
 			}
+			page++;
 		}
+		*/
 		System.out.println("Expected Size = "
 				+ grapeVineFacade.getNumber_of_total_results());
 		System.out.println("Actual Size = " + cvv.size());
-		System.out.println("Expected Pages = " + (remainder + 1));
+		System.out.println("Expected Pages = " + (remainder));
 		
 		CassandraConnector cc = new CassandraConnector();
 		cc.checkConnection();
 		//cc.dropColumnFamily("comicVineVolumes");
 	//	cc.createColumnFamily();
 		try {
-			cc.insertComicVineVolumes(cvv);
+			System.out.println("Insert to cassandra");
+			int num = cc.insertComicVineVolumes(cvv);
+			System.out.println(num);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public void preformQuery(String queryRequest) {
 		grapeVineFacade.PreformQuery(queryRequest);
 	}
@@ -84,5 +89,7 @@ public class ComicVineTest {
 		grapeVineFacade.PreformQuery("http://www.comicvine.com/api/search/?api_key=2736f1620710c52159ba0d0aea337c59bd273816"
 						+ "&format=json&field_list=name,id&query=" + query);
 	}
+	
+	
 
 }

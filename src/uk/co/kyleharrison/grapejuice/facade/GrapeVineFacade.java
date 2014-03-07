@@ -90,28 +90,28 @@ public class GrapeVineFacade {
 				number_of_total_results = (long) json
 						.get("number_of_total_results");
 
-				JSONArray jsonArray2 = (JSONArray) json.get("results");
-				 System.out.println(jsonArray2.toString());
+				JSONArray resultsArray = (JSONArray) json.get("results");
+				//System.out.println(jsonArray2.toString());
 
 				this.comicVineVolumes = new ArrayList<ComicVineVolume>();
 
-				for (Object obj : jsonArray2) {
-					JSONObject jsoObj = (JSONObject) obj;
+				for (Object resultObject : resultsArray) {
+					JSONObject resultJSONObject = (JSONObject) resultObject;
 					try {
-						if (jsoObj.containsKey("name")) {
+						if (resultJSONObject.containsKey("name")) {
 							/*
 							 * if
 							 * (!(jsoObj.get("name").toString().equals("null")))
 							 * { System.out.println(jsoObj.get("id") + " : " +
 							 * jsoObj.get("name")); }
 							 */
-							mapToPojo(jsoObj);
+							mapToPojo(resultJSONObject);
 						}
 					} catch (NullPointerException e) {
 						e.printStackTrace();
 					}
 				}
-				System.out.println("Loading : " + jsonArray2.size()
+				System.out.println("Loading : " + resultsArray.size()
 						+ " Results");
 
 			} catch (ParseException e) {
@@ -125,13 +125,12 @@ public class GrapeVineFacade {
 		ObjectMapper mapper = new ObjectMapper();
 
 		try {
-			ComicVineVolume comicVineVolume = mapper.readValue(
-					json.toJSONString(), ComicVineVolume.class);
+			ComicVineVolume comicVineVolume = mapper.readValue(json.toJSONString(), ComicVineVolume.class);
 			this.comicVineVolumes.add(comicVineVolume);
-			/*
-			 * System.out.println(comicVineVolume.getId() + " " +
-			 * comicVineVolume.getName());
-			 */
+			
+			 System.out.println(comicVineVolume.getId() + " " +
+			 comicVineVolume.getImage().getThumb_url());
+			 
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {

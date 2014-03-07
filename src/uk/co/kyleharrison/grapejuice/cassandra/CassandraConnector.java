@@ -72,16 +72,18 @@ public class CassandraConnector {
 		
 	}
 	
-	public void insertComicVineVolumes(ArrayList<ComicVineVolume> volumeList) throws SQLException {
+	public int insertComicVineVolumes(ArrayList<ComicVineVolume> volumeList) throws SQLException {
 		String data = "BEGIN BATCH \n";
 		
+		int count =0;
 		for(ComicVineVolume cvv : volumeList){
 			data +=  "insert into comicvinevolumes (key, name, issue_count,year) values ("+cvv.getId()+",'"+cvv.getName().replaceAll("'", " ")
 					+"',"+cvv.getCount_of_issues()+","+ cvv.getStart_year() +") \n";
+			
 		}
 		data += "APPLY BATCH;";
 		
 		Statement st = this.connection.createStatement();
-		st.executeUpdate(data);
+		return st.executeUpdate(data);
 	}
 }
