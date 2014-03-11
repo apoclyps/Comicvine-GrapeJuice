@@ -2,12 +2,9 @@ package uk.co.kyleharrison.grapejuice.model.settings;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Enumeration;
 import java.util.Properties;
 
 //A singleton class for persistent settings.
-
 public class Persistence {
 	
 	private static Persistence instance = null;
@@ -38,8 +35,8 @@ public class Persistence {
 			e.printStackTrace();
 			return false;
 		}
-		Enumeration en = this.props.keys();
-		Collection<Object> keys = this.props.values();
+		//Enumeration en = this.props.keys();
+		//<Object> keys = this.props.values();
 
 		this.comicVineAPIKey = this.props.getProperty("COMICVINEAPI");
 		this.cassandraHost = this.props.getProperty("CASSANDRAHOST");
@@ -71,6 +68,5 @@ public class Persistence {
 	public void setCassandraHost(String cassandraHost) {
 		this.cassandraHost = cassandraHost;
 	}
-	
-	
+
 }

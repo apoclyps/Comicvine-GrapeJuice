@@ -2,23 +2,15 @@ package uk.co.kyleharrison.grapejuice.storage;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-//import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 
-import javax.naming.InitialContext;
-import javax.naming.NameNotFoundException;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-
 public class MySQLConnector {
 	protected Connection connection = null;
 	private Statement statement = null;
-	//private PreparedStatement preparedStatement = null;
 	private ResultSet resultSet = null;
-	private DataSource datasource;
 	private String database_name = "comicdb";
 
 	public MySQLConnector() {
@@ -29,7 +21,7 @@ public class MySQLConnector {
 			
 			String driver = "com.mysql.jdbc.Driver";
 			Class.forName(driver);
-			String url = "jdbc:mysql://localhost:3306/comicdb";
+			String url = "jdbc:mysql://localhost:3306/"+database_name;
 			connection = DriverManager.getConnection(url, "root", "hellokitty1");
 			//connection = datasource.getConnection();
 		} catch (SQLException | ClassNotFoundException e) {

@@ -1,8 +1,5 @@
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import uk.co.kyleharrison.grapejuice.cassandra.CassandraConnector;
 import uk.co.kyleharrison.grapejuice.comicvine.ComicVineVolume;
 import uk.co.kyleharrison.grapejuice.facade.GrapeVineFacade;

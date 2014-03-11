@@ -8,10 +8,6 @@ import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 

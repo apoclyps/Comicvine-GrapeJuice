@@ -128,8 +128,8 @@ public class GrapeVineFacade {
 			ComicVineVolume comicVineVolume = mapper.readValue(json.toJSONString(), ComicVineVolume.class);
 			this.comicVineVolumes.add(comicVineVolume);
 			
-			 System.out.println(comicVineVolume.getId() + " " +
-			 comicVineVolume.getImage().getThumb_url());
+//			 System.out.println(comicVineVolume.getId() + " " +
+//			 comicVineVolume.getImage().getThumb_url());
 			 
 		} catch (JsonParseException e) {
 			e.printStackTrace();

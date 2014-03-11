@@ -13,7 +13,7 @@ public class CassandraConnector {
 	protected Connection connection = null;
 
 	private String database = "PIM";
-	private String connectionString = "jdbc:cassandra://localhost:9160/PIM";
+	private String connectionString = "jdbc:cassandra://localhost:9160/"+database;
 
 	public CassandraConnector() {
 		try {
@@ -75,7 +75,6 @@ public class CassandraConnector {
 	public int insertComicVineVolumes(ArrayList<ComicVineVolume> volumeList) throws SQLException {
 		String data = "BEGIN BATCH \n";
 		
-		int count =0;
 		for(ComicVineVolume cvv : volumeList){
 			data +=  "insert into comicvinevolumes (key, name, issue_count,year) values ("+cvv.getId()+",'"+cvv.getName().replaceAll("'", " ")
 					+"',"+cvv.getCount_of_issues()+","+ cvv.getStart_year() +") \n";
