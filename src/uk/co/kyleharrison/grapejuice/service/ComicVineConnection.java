@@ -70,10 +70,10 @@ public class ComicVineConnection {
 			JSONArray jsonArray2 = (JSONArray) json.get("results");
 			System.out.println(jsonArray2.toString());
 			
-			for(Object obj : jsonArray2){
+/*			for(Object obj : jsonArray2){
 				JSONObject jsoObj = (JSONObject) obj;
 			//	mapToPojo(jsoObj);
-			}
+			}*/
 		}
 		return false;
 	}

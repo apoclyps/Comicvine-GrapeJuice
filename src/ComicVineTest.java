@@ -11,7 +11,7 @@ public class ComicVineTest {
 	private static GrapeVineFacade grapeVineFacade;
 
 	public static void main(String[] arguments) {
-		String query = "X-men";
+		String query = "conan";
 		String resources = "name,id,first_issue,last_issue,count_of_issues,images";
 		String queryRequest = "http://www.comicvine.com/api/search/?api_key=2736f1620710c52159ba0d0aea337c59bd273816"
 				+ "&format=json&field_list="+resources+"&resources=volume&query=";
@@ -21,22 +21,32 @@ public class ComicVineTest {
 		grapeVineFacade = new GrapeVineFacade();
 		grapeVineFacade.PreformQuery(queryRequest + query);
 		ArrayList<ComicVineVolume> cvv = grapeVineFacade.getComicVineVolumes();
+		System.out.println("Size : " +cvv.size());
 
 		// OUTPUT
 		int remainder = (int) (Math.ceil(grapeVineFacade.getNumber_of_total_results() / 100)) ;
-		System.out.println(remainder);
+		System.out.println("Remaining Pages : " +remainder);
 		int page = 1;
-	/*	while (page != remainder) {
+		boolean exit = false;
+		
+		do{
+			System.out.println("Preforming query");
 			grapeVineFacade.PreformQuery(queryRequest + query + "&page=" + (page+1));
 
 			if (grapeVineFacade.getNumber_of_page_result() != 0) {
 				cvv.addAll(grapeVineFacade.getComicVineVolumes());
 				//grapeVineFacade.setNumber_of_page_result(0);
 				//break;
+			}else{
+				exit = true;
+			}
+			if(page==remainder){
+				exit = true;
+				//System.out.println("No results");
 			}
 			page++;
-		}
-		*/
+		}while (exit==false);
+		
 		System.out.println("Expected Size = "
 				+ grapeVineFacade.getNumber_of_total_results());
 		System.out.println("Actual Size = " + cvv.size());

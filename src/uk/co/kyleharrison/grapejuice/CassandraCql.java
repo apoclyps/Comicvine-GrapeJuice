@@ -12,8 +12,8 @@ public class CassandraCql {
 			Class.forName("org.apache.cassandra.cql.jdbc.CassandraDriver");
 			con = DriverManager
 					.getConnection("jdbc:cassandra://localhost:9160/PIM");
-			CassandraCql sample = new CassandraCql();
-			String Columnname = "subject";
+			//CassandraCql sample = new CassandraCql();
+			//String Columnname = "subject";
 
 			/* -- Functions to perform on Keyspace -- */
 			createColumnFamily();

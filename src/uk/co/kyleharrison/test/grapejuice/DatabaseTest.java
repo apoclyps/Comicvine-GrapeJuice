@@ -80,7 +80,7 @@ public class DatabaseTest {
 	}
 	
 	public void databaseRemoveQuery(GrapeVineFacade grapeVineFacade){
-		ArrayList <ComicVineVolume> cvv = this.grapeVineFacade.getComicVineVolumes();
+		//ArrayList <ComicVineVolume> cvv = this.grapeVineFacade.getComicVineVolumes();
 		boolean success = mysqlFacade.removeVolume(1457, "Batman: Arkham City Gameplay Trailer");
 		//boolean success = mysqlFacade.insertVolume(1,"Uncanny X-Men: The Complete Collection By Matt Fraction");
 		assert(success);
