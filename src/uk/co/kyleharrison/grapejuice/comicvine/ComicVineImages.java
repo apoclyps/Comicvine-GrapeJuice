@@ -21,12 +21,14 @@ public class ComicVineImages {
 		StringBuilder sb = new StringBuilder();
 		sb.append("{");
 		
+		//System.out.printf("Size : %s \n",this.comicVineImages.entrySet().size());
 		int elements = 0;
 		for(Map.Entry<?,?> entry : this.comicVineImages.entrySet()){
 			sb.append("'"+entry.getKey().toString()+"' : '" + entry.getValue().toString()+"'");
-			if(elements < comicVineImages.size()-2){
+			if(elements < comicVineImages.entrySet().size()-1){
 				sb.append(", ");
 			}
+			elements++;
 		}
 		sb.append("}");
 		this.cassandraMap = sb.toString();
