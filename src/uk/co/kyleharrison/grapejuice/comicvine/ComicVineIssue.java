@@ -1,33 +1,86 @@
 package uk.co.kyleharrison.grapejuice.comicvine;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ComicVineIssue {
 
     public int id;
-    
     public String api_detail_url;
-    
     public String issue_number;
-    
     public String name;
-    
     public int issue_month;
-    
     public int issue_year;
-
     public String issue_description;
-
     public String issue_title;
-    
     public ComicVineImages images;
-
     public ArrayList<ComicVineCredit> credits;
-    
     public ArrayList<ComicVineCharacter> characters;
-    
     public ComicVineVolume volume;
+    public HashMap<String, String> comicvineIssue;
+    public String cassandraMap = null;
+    
+	public void setCassandraMap(String cassandraMap) {
+		this.cassandraMap = cassandraMap;
+	}
+    
+	public String getCassandraMap() {
+		this.comicvineIssue = new HashMap<String,String>();
+		setComicvineIssue();
+		StringBuilder sb = new StringBuilder();
+		sb.append("{");
+		
+		//System.out.printf("Size : %s \n",this.comicvineIssue.size());
+		int elements = 0;
+		for(Map.Entry<String,String> entry : this.comicvineIssue.entrySet()){
+			sb.append("'"+entry.getKey().toString()+"' : '" + entry.getValue().toString()+"'");
+			if(elements < comicvineIssue.entrySet().size()-1){
+				sb.append(", ");
+			}
+			elements++;
+		}
+		sb.append("}");
+		//System.out.println(sb.toString());
+		this.cassandraMap = sb.toString();
+		return this.cassandraMap;
+	}
+    
+	public void setComicvineIssue(){
+		try{
+			/*System.out.println("\tID : "+ this.id);
+			System.out.println("\tID : "+ this.api_detail_url);
+			System.out.println("\tID : "+ this.issue_number);
+			System.out.println("\tID : "+ this.name);*/
 
+			this.comicvineIssue.put("id", Integer.toString(this.id));
+			this.comicvineIssue.put("api_detail_url", this.api_detail_url);
+			this.comicvineIssue.put("issue_number", this.issue_number);
+			this.comicvineIssue.put("name", this.name);
+		}catch(Exception e){
+			System.out.println("Exception in set comicvine issue");
+		}
+		
+		//System.out.println("ComicVineIssue Set");
+		
+		/*try{
+			this.comicvineIssue.put("issue_month", Integer.toString(this.issue_month));
+			this.comicvineIssue.put("issue_year", Integer.toString(this.issue_year));
+			this.comicvineIssue.put("issue_description", this.issue_description);
+			this.comicvineIssue.put("issue_title", this.issue_title);
+		}catch(Exception e){
+			//e.printStackTrace();
+			System.out.println("GrapeJuice : ComicVineIssue : Not yet implemented");
+		}*/
+		
+		// Not implemented yet
+//		this.comicvineIssue.put("images", this.images.toString());
+//		this.comicvineIssue.put("credits", this.credits.toString());
+//		this.comicvineIssue.put("characters", this.characters.toString());
+//		this.comicvineIssue.put("volume", this.volume.toString());
+//		this.comicvineIssue.put("comicvineIssue", this.comicvineIssue.toString());
+	}
+    
 	public ComicVineIssue(int id, String api_detail_url, String issue_number,
 			String name, int issue_month, int issue_year,
 			String issue_description, String issue_title,
@@ -46,10 +99,12 @@ public class ComicVineIssue {
 		this.credits = credits;
 		this.characters = characters;
 		this.volume = volume;
+		this.comicvineIssue = new HashMap<String, String>();
 	}
 
 	public ComicVineIssue() {
-		// TODO Auto-generated constructor stub
+		super();
+		this.comicvineIssue = new HashMap<String, String>();
 	}
 
 	public int getId() {
@@ -146,6 +201,14 @@ public class ComicVineIssue {
 
 	public void setVolume(ComicVineVolume volume) {
 		this.volume = volume;
+	}
+
+	public HashMap<String, String> getComicvineIssue() {
+		return comicvineIssue;
+	}
+
+	public void setComicvineIssue(HashMap<String, String> comicvineIssue) {
+		this.comicvineIssue = comicvineIssue;
 	}
     
 }

@@ -15,15 +15,13 @@ public class ComicVineImages {
     public String cassandraMap;
     
 	public String getCassandraMap() {
-		
 		setComicVineImages();
-		
 		StringBuilder sb = new StringBuilder();
 		sb.append("{");
 		
 		//System.out.printf("Size : %s \n",this.comicVineImages.entrySet().size());
 		int elements = 0;
-		for(Map.Entry<?,?> entry : this.comicVineImages.entrySet()){
+		for(Map.Entry<String,String> entry : this.comicVineImages.entrySet()){
 			sb.append("'"+entry.getKey().toString()+"' : '" + entry.getValue().toString()+"'");
 			if(elements < comicVineImages.entrySet().size()-1){
 				sb.append(", ");
@@ -31,12 +29,11 @@ public class ComicVineImages {
 			elements++;
 		}
 		sb.append("}");
+		//System.out.println(sb.toString());
 		this.cassandraMap = sb.toString();
-		return cassandraMap;
+		return this.cassandraMap;
 	}
 	
-	
-
 	public void setCassandraMap(String cassandraMap) {
 		this.cassandraMap = cassandraMap;
 	}
@@ -135,5 +132,4 @@ public class ComicVineImages {
 		this.tiny_url = tiny_url;
 	}
 	
-    
 }
