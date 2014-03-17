@@ -1,7 +1,10 @@
 package uk.co.kyleharrison.test.grapejuice.model;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import org.apache.http.client.utils.URLEncodedUtils;
 import org.junit.Test;
 
 import uk.co.kyleharrison.grapejuice.comicvine.ComicVineIssue;
@@ -19,8 +22,15 @@ public class ComicVineIssueTest {
 	@Test
 	public void testImagesHashMap(){
 		GrapeVineFacade grapeVineFacade = new GrapeVineFacade();
+		String query = null ;
+		try {
+			query = URLEncoder.encode("Sonic the Hedgehog","UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		grapeVineFacade.PreformQuery("http://www.comicvine.com/api/search/?api_key=2736f1620710c52159ba0d0aea337c59bd273816"
-						+ "&format=json&limit=1&resources=volume&field_list=name,id,first_issue&query=" + "batman");
+						+ "&format=json&limit=1&resources=volume&field_list=name,id,first_issue&query=" + query);
 		ArrayList <ComicVineVolume> cvv = grapeVineFacade.getComicVineVolumes();
 		
 		ComicVineIssue cvi = cvv.get(0).getFirst_issue();

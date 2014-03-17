@@ -55,7 +55,7 @@ public class ComicVineIssue {
 
 			this.comicvineIssue.put("id", Integer.toString(this.id));
 			this.comicvineIssue.put("api_detail_url", this.api_detail_url);
-			this.comicvineIssue.put("issue_number", this.issue_number);
+			this.comicvineIssue.put("issue_number", this.issue_number.replaceAll("¼","0"));
 			this.comicvineIssue.put("name", this.name);
 		}catch(Exception e){
 			System.out.println("Exception in set comicvine issue");
