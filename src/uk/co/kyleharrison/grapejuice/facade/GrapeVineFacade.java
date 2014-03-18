@@ -74,7 +74,7 @@ public class GrapeVineFacade {
 	public String PreformQuery(String query) {
 		URLReader urlReader = new URLReader();
 		urlReader.setUrl(query);
-		;
+		
 		String jsonResponse = urlReader.readFromUrl();
 		// System.out.println(jsonResponse);
 		JSONObject json = null;

@@ -48,15 +48,19 @@ public class ComicVineIssue {
     
 	public void setComicvineIssue(){
 		try{
-			/*System.out.println("\tID : "+ this.id);
-			System.out.println("\tID : "+ this.api_detail_url);
-			System.out.println("\tID : "+ this.issue_number);
-			System.out.println("\tID : "+ this.name);*/
+			System.out.println("\tID : "+ this.id);
+			System.out.println("\tURL : "+ this.api_detail_url);
+			System.out.println("\tIssue : "+ this.issue_number);
+			System.out.println("\tName : "+ this.name);
 
 			this.comicvineIssue.put("id", Integer.toString(this.id));
 			this.comicvineIssue.put("api_detail_url", this.api_detail_url);
 			this.comicvineIssue.put("issue_number", this.issue_number.replaceAll("¼","0"));
-			this.comicvineIssue.put("name", this.name.replaceAll("[()?:!.,;{}']", " "));
+			if(!(this.name==null)){
+				this.comicvineIssue.put("name", this.name.replaceAll("[()?:!.,;{}']", " "));
+			}else{
+				this.comicvineIssue.put("name", "null");
+			}
 		}catch(Exception e){
 			System.out.println("Exception in set comicvine issue");
 		}
