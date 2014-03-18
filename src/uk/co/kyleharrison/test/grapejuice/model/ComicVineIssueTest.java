@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
-import org.apache.http.client.utils.URLEncodedUtils;
 import org.junit.Test;
 
 import uk.co.kyleharrison.grapejuice.comicvine.ComicVineIssue;

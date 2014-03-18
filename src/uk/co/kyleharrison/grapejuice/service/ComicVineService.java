@@ -150,7 +150,7 @@ public class ComicVineService {
 
     public ArrayList<ComicVineIssue> SearchIssue(String volumeName, int issueNumber)
     {
-        ArrayList<ComicVineVolume> comicVineVolumeList = this.FindVolumeIdByName(volumeName);
+        //ArrayList<ComicVineVolume> comicVineVolumeList = this.FindVolumeIdByName(volumeName);
 
         ArrayList<ComicVineIssue> comicVineIssueBag = new ArrayList<ComicVineIssue>();
         /*
