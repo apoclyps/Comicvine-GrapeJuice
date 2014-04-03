@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ComicVineIssue {
+public class ComicVineIssue extends ComicVineBase {
 
-    public int id;
+   // public int id;
     public String api_detail_url;
     public String issue_number;
-    public String name;
+  //  public String name;
     public int issue_month;
     public int issue_year;
     public String issue_description;

@@ -5,8 +5,9 @@ import java.util.ArrayList;
 public class ComicVineVolume extends ComicVineBase {
 
 	private String url;
+	private String deck;
 	private int count_of_issues;
-	private String volume_description;
+	private String description;
 	private int start_year;
 	private ComicVinePublisher publisher;
 	private ComicVineImages image;
@@ -19,7 +20,7 @@ public class ComicVineVolume extends ComicVineBase {
 	}
 
 	public ComicVineVolume(int id, String name, String url,
-			int count_of_issues, String volume_description, int start_year,
+			int count_of_issues, String description, int start_year,
 			ComicVinePublisher publisher, ComicVineImages image,
 			ArrayList<ComicVineIssue> list_of_issue) {
 		super();
@@ -27,11 +28,28 @@ public class ComicVineVolume extends ComicVineBase {
 		this.name = name;
 		this.url = url;
 		this.count_of_issues = count_of_issues;
-		this.volume_description = volume_description;
+		this.description = description;
 		this.start_year = start_year;
 		this.publisher = publisher;
 		this.image = image;
 		this.list_of_issue = list_of_issue;
+	}
+	
+	public ComicVineVolume(String url, String deck, int count_of_issues,
+			String description, int start_year, ComicVinePublisher publisher,
+			ComicVineImages image, ArrayList<ComicVineIssue> list_of_issue,
+			ComicVineIssue first_issue, ComicVineIssue last_issue) {
+		super();
+		this.url = url;
+		this.deck = deck;
+		this.count_of_issues = count_of_issues;
+		this.description = description;
+		this.start_year = start_year;
+		this.publisher = publisher;
+		this.image = image;
+		this.list_of_issue = list_of_issue;
+		this.first_issue = first_issue;
+		this.last_issue = last_issue;
 	}
 
 	public String getUrl() {
@@ -59,12 +77,12 @@ public class ComicVineVolume extends ComicVineBase {
 		this.count_of_issues = count_of_issues;
 	}
 
-	public String getVolume_description() {
-		return volume_description;
+	public String getdescription() {
+		return description;
 	}
 
-	public void setVolume_description(String volume_description) {
-		this.volume_description = volume_description;
+	public void setdescription(String description) {
+		this.description = description;
 	}
 
 	public int getStart_year() {
@@ -105,6 +123,14 @@ public class ComicVineVolume extends ComicVineBase {
 
 	public void setLast_issue(ComicVineIssue last_issue) {
 		this.last_issue = last_issue;
+	}
+
+	public String getDeck() {
+		return deck;
+	}
+
+	public void setDeck(String deck) {
+		this.deck = deck;
 	}
 
 
