@@ -120,6 +120,24 @@ public class GrapeVineFacade {
 		}
 		return json.toString();
 	}
+	
+	public String PreformIssueQuery(String query) {
+		URLReader urlReader = new URLReader();
+		urlReader.setUrl(query);
+		
+		String jsonResponse = urlReader.readFromUrl();
+		// System.out.println(jsonResponse);
+		JSONObject json = null;
+		if (jsonResponse != null) {
+			try {
+				json = (JSONObject) new JSONParser().parse(jsonResponse);
+				mapToPojo(json);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		return json.toString();
+	}
 
 	public void mapToPojo(JSONObject json) {
 		ObjectMapper mapper = new ObjectMapper();

@@ -12,8 +12,10 @@ public class ComicVineVolume extends ComicVineBase {
 	private ComicVinePublisher publisher;
 	private ComicVineImages image;
 	private ArrayList<ComicVineIssue> list_of_issue;
+	private ArrayList<ComicVineIssue> issues;
 	private ComicVineIssue first_issue;
 	private ComicVineIssue last_issue;
+	private ComicVineIssues results;
 
 	public ComicVineVolume() {
 		super();
@@ -133,5 +135,20 @@ public class ComicVineVolume extends ComicVineBase {
 		this.deck = deck;
 	}
 
+	public ArrayList<ComicVineIssue> getIssues() {
+		return issues;
+	}
+
+	public void setIssues(ArrayList<ComicVineIssue> issues) {
+		this.issues = issues;
+	}
+
+	public ComicVineIssues getResults() {
+		return results;
+	}
+
+	public void setResults(ComicVineIssues results) {
+		this.results = results;
+	}
 
 }

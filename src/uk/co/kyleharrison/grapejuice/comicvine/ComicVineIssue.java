@@ -20,6 +20,7 @@ public class ComicVineIssue extends ComicVineBase {
     public ComicVineVolume volume;
     public HashMap<String, String> comicvineIssue;
     public String cassandraMap = null;
+    public String site_detail_url;
     
 	public void setCassandraMap(String cassandraMap) {
 		this.cassandraMap = cassandraMap;
@@ -213,6 +214,14 @@ public class ComicVineIssue extends ComicVineBase {
 
 	public void setComicvineIssue(HashMap<String, String> comicvineIssue) {
 		this.comicvineIssue = comicvineIssue;
+	}
+
+	public String getSite_detail_url() {
+		return site_detail_url;
+	}
+
+	public void setSite_detail_url(String site_detail_url) {
+		this.site_detail_url = site_detail_url;
 	}
     
 }
