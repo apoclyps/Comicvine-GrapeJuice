@@ -6,15 +6,14 @@ import java.util.Map;
 
 public class ComicVineIssue extends ComicVineBase {
 
-   // public int id;
     public String api_detail_url;
     public String issue_number;
-  //  public String name;
     public int issue_month;
     public int issue_year;
+    public String description;
     public String issue_description;
     public String issue_title;
-    public ComicVineImages images;
+    public ComicVineImages image;
     public ArrayList<ComicVineCredit> credits;
     public ArrayList<ComicVineCharacter> characters;
     public ComicVineVolume volume;
@@ -100,7 +99,7 @@ public class ComicVineIssue extends ComicVineBase {
 		this.issue_year = issue_year;
 		this.issue_description = issue_description;
 		this.issue_title = issue_title;
-		this.images = images;
+		this.image = images;
 		this.credits = credits;
 		this.characters = characters;
 		this.volume = volume;
@@ -177,11 +176,11 @@ public class ComicVineIssue extends ComicVineBase {
 	}
 
 	public ComicVineImages getImages() {
-		return images;
+		return image;
 	}
 
 	public void setImages(ComicVineImages images) {
-		this.images = images;
+		this.image = images;
 	}
 
 	public ArrayList<ComicVineCredit> getCredits() {
@@ -222,6 +221,22 @@ public class ComicVineIssue extends ComicVineBase {
 
 	public void setSite_detail_url(String site_detail_url) {
 		this.site_detail_url = site_detail_url;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public ComicVineImages getImage() {
+		return image;
+	}
+
+	public void setImage(ComicVineImages image) {
+		this.image = image;
 	}
     
 }

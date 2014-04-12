@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import uk.co.kyleharrison.grapejuice.comicvine.ComicVineIssue;
 import uk.co.kyleharrison.grapejuice.comicvine.ComicVineVolume;
 import uk.co.kyleharrison.grapejuice.utils.URLReader;
 
@@ -21,10 +22,14 @@ public class GrapeVineFacade {
 	private long offset = 0;
 	private long number_of_page_results = 0;
 	private long number_of_total_results = 0;
+	private ComicVineIssue comicVineIssue;
+	private ComicVineVolume comicVineVolume;
+	
 
 	public GrapeVineFacade() {
 		super();
 		comicVineVolumes = new ArrayList<ComicVineVolume>();
+		setComicVineIssue(new ComicVineIssue());
 	}
 
 	public String run(String query) {
@@ -131,6 +136,7 @@ public class GrapeVineFacade {
 		if (jsonResponse != null) {
 			try {
 				json = (JSONObject) new JSONParser().parse(jsonResponse);
+				this.comicVineVolumes = new ArrayList<ComicVineVolume>();
 				mapToPojo(json);
 			} catch (ParseException e) {
 				e.printStackTrace();
@@ -138,7 +144,39 @@ public class GrapeVineFacade {
 		}
 		return json.toString();
 	}
+	
+	public String PreformIssueImageQuery(String query) {
+		URLReader urlReader = new URLReader();
+		urlReader.setUrl(query);
+		
+		String jsonResponse = urlReader.readFromUrl();
+		JSONObject json = null;
+		if (jsonResponse != null) {
+			try {
+				json = (JSONObject) new JSONParser().parse(jsonResponse);
+				this.comicVineIssue = new ComicVineIssue();
+				mapToIssuePojo(json);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		return json.toString();
+	}
 
+	public void mapToIssuePojo(JSONObject json) {
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+			this.comicVineVolume = mapper.readValue(json.toJSONString(), ComicVineVolume.class);
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void mapToPojo(JSONObject json) {
 		ObjectMapper mapper = new ObjectMapper();
 
@@ -156,6 +194,22 @@ public class GrapeVineFacade {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public ComicVineIssue getComicVineIssue() {
+		return comicVineIssue;
+	}
+
+	public void setComicVineIssue(ComicVineIssue comicVineIssue) {
+		this.comicVineIssue = comicVineIssue;
+	}
+
+	public ComicVineVolume getComicVineVolume() {
+		return comicVineVolume;
+	}
+
+	public void setComicVineVolume(ComicVineVolume comicVineVolume) {
+		this.comicVineVolume = comicVineVolume;
 	}
 
 }

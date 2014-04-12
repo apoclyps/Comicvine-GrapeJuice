@@ -12,6 +12,9 @@ public class ComicVineBase {
 	protected int limit;
 	protected String error;
 	protected String version;
+	protected String api_detail_uri;
+	protected String api_detail_url;
+	protected String site_detail_url;
 	
 	public ComicVineBase() {
 		super();
@@ -100,6 +103,30 @@ public class ComicVineBase {
 
 	public void setVersion(String version) {
 		this.version = version;
+	}
+
+	public String getApi_detail_uri() {
+		return api_detail_uri;
+	}
+
+	public void setApi_detail_uri(String api_detail_uri) {
+		this.api_detail_uri = api_detail_uri;
+	}
+
+	public String getSite_detail_url() {
+		return site_detail_url;
+	}
+
+	public void setSite_detail_url(String site_detail_url) {
+		this.site_detail_url = site_detail_url;
+	}
+
+	public String getApi_detail_url() {
+		return api_detail_url;
+	}
+
+	public void setApi_detail_url(String api_detail_url) {
+		this.api_detail_url = api_detail_url;
 	}
 	
 	
