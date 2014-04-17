@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ComicVineIssue extends ComicVineBase {
+import org.apache.commons.lang.StringEscapeUtils;
+
+public class ComicVineIssue extends ComicVineBase implements Comparable<ComicVineIssue> {
 
     public String api_detail_url;
     public String issue_number;
@@ -26,9 +28,12 @@ public class ComicVineIssue extends ComicVineBase {
 	protected String cover_date;
 	private String cassandraInsert;
    
+	public void generateCassandraInsert(){
+		this.cassandraInsert = id +"," + volume.getId() + ",'"+ StringEscapeUtils.escapeSql(name)+"','"+ site_detail_url
+				+"','"+api_detail_url + "','"+ issue_number +"','"+this.image.getThumb_url().toString()+"','"+cover_date+"','"+StringEscapeUtils.escapeSql(description) +"'"; 
+	}
+	
 	public String getCassandraInsert() {
-		this.cassandraInsert = id +"," + volume.getId() + ",'"+ name+"','"+ site_detail_url
-				+"','"+api_detail_url + "','"+ issue_number +"','"+this.image.getThumb_url().toString()+"','"+cover_date+"','"+description.replaceAll("\'","") +"'"; 
 		return cassandraInsert;
 	}
 
@@ -274,7 +279,10 @@ public class ComicVineIssue extends ComicVineBase {
 	public void setCover_date(String cover_date) {
 		this.cover_date = cover_date;
 	}
+
+	@Override
+	public int compareTo(ComicVineIssue otherIssue) {
+		return  (int) (Math.floor(Double.parseDouble(this.issue_number))) -  (int)(Math.floor(Double.parseDouble(otherIssue.issue_number)));
+	}
 	
-	
-    
 }
