@@ -2,7 +2,7 @@ package uk.co.kyleharrison.grapejuice.comicvine;
 
 import java.util.ArrayList;
 
-public class ComicVineIssues {
+public class ComicVineIssues extends ComicVineBase {
 
 	protected ArrayList<ComicVineIssue> issues;
 	protected String name;
@@ -12,7 +12,7 @@ public class ComicVineIssues {
 	protected ComicVineImages image;
 	protected int issue_number;
 	protected ComicVineVolume volume;
-	
+	protected ComicVineIssue results;
 	
 	public ComicVineIssues() {
 		super();
@@ -87,6 +87,14 @@ public class ComicVineIssues {
 
 	public void setVolume(ComicVineVolume volume) {
 		this.volume = volume;
+	}
+
+	public ComicVineIssue getResults() {
+		return results;
+	}
+
+	public void setResults(ComicVineIssue results) {
+		this.results = results;
 	}
 	
 	

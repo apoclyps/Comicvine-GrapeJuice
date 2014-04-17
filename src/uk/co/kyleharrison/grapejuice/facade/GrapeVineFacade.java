@@ -12,6 +12,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import uk.co.kyleharrison.grapejuice.comicvine.ComicVineIssue;
+import uk.co.kyleharrison.grapejuice.comicvine.ComicVineIssues;
 import uk.co.kyleharrison.grapejuice.comicvine.ComicVineVolume;
 import uk.co.kyleharrison.grapejuice.utils.URLReader;
 
@@ -167,7 +168,9 @@ public class GrapeVineFacade {
 		ObjectMapper mapper = new ObjectMapper();
 
 		try {
-			this.comicVineVolume = mapper.readValue(json.toJSONString(), ComicVineVolume.class);
+			System.out.println("GRAPEVINE FACADE JSON : \n"+json.toJSONString());
+			ComicVineIssues cvis = mapper.readValue(json.toJSONString(), ComicVineIssues.class);
+			this.comicVineIssue = cvis.getResults();
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
@@ -183,10 +186,6 @@ public class GrapeVineFacade {
 		try {
 			ComicVineVolume comicVineVolume = mapper.readValue(json.toJSONString(), ComicVineVolume.class);
 			this.comicVineVolumes.add(comicVineVolume);
-			
-//			 System.out.println(comicVineVolume.getId() + " " +
-//			 comicVineVolume.getImage().getThumb_url());
-			 
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {

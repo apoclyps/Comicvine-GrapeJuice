@@ -20,18 +20,34 @@ public class ComicVineIssue extends ComicVineBase {
     public HashMap<String, String> comicvineIssue;
     public String cassandraMap = null;
     public String site_detail_url;
-    
+    public String image_url;
+	protected String name = "";
+	protected int id;
+	protected String cover_date;
+	private String cassandraInsert;
+   
+	public String getCassandraInsert() {
+		this.cassandraInsert = id +"," + volume.getId() + ",'"+ name+"','"+ site_detail_url
+				+"','"+api_detail_url + "','"+ issue_number +"','"+this.image.getThumb_url().toString()+"','"+cover_date+"','"+description.replaceAll("\'","") +"'"; 
+		return cassandraInsert;
+	}
+
+	public void setCassandraInsert(String cassandraInsert) {
+		this.cassandraInsert = cassandraInsert;
+	}
+
 	public void setCassandraMap(String cassandraMap) {
 		this.cassandraMap = cassandraMap;
 	}
     
 	public String getCassandraMap() {
-		this.comicvineIssue = new HashMap<String,String>();
+		try{
+			this.comicvineIssue = new HashMap<String,String>();
+
 		setComicvineIssue();
 		StringBuilder sb = new StringBuilder();
 		sb.append("{");
 		
-		//System.out.printf("Size : %s \n",this.comicvineIssue.size());
 		int elements = 0;
 		for(Map.Entry<String,String> entry : this.comicvineIssue.entrySet()){
 			sb.append("'"+entry.getKey().toString()+"' : '" + entry.getValue().toString()+"'");
@@ -41,17 +57,21 @@ public class ComicVineIssue extends ComicVineBase {
 			elements++;
 		}
 		sb.append("}");
-		//System.out.println(sb.toString());
 		this.cassandraMap = sb.toString();
+		
+		}catch(Exception e){
+			//e.printStackTrace();
+			return null;
+		}
 		return this.cassandraMap;
 	}
     
 	public void setComicvineIssue(){
 		try{
-			System.out.println("\tID : "+ this.id);
-			System.out.println("\tURL : "+ this.api_detail_url);
-			System.out.println("\tIssue : "+ this.issue_number);
-			System.out.println("\tName : "+ this.name);
+			//System.out.println("\tID : "+ this.id);
+			//System.out.println("\tURL : "+ this.api_detail_url);
+			//System.out.println("\tIssue : "+ this.issue_number);
+			//System.out.println("\tName : "+ this.name);
 
 			this.comicvineIssue.put("id", Integer.toString(this.id));
 			this.comicvineIssue.put("api_detail_url", this.api_detail_url);
@@ -238,5 +258,23 @@ public class ComicVineIssue extends ComicVineBase {
 	public void setImage(ComicVineImages image) {
 		this.image = image;
 	}
+
+	public String getImage_url() {
+		return image_url;
+	}
+
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
+	}
+
+	public String getCover_date() {
+		return cover_date;
+	}
+
+	public void setCover_date(String cover_date) {
+		this.cover_date = cover_date;
+	}
+	
+	
     
 }
