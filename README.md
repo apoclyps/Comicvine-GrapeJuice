@@ -1,16 +1,17 @@
 Comicvine-GrapeJuice
 ====================
-
 A set of java bindings for the comic vine API.
 
-Currently Under Development
+Features
 =====================
-One basic query is currently tested. Additional work is required!
+Generic searches - can be preformed that will return a list of volumes containing the keywords.
+Volume search    - A specific volume query can be preformed using the Query ID to return detailed information about the volume such as issues contained within.
+Issue search - accepts a issue id and returns all information about that issue as an object to the volume object.
 
-Caching with MySQL
+Caching with Cassandra
 =====================
-To reduce on the number of queries required to the ComicVineAPI. Queries will be cached in mysql. 
-E.g. Publisher ID's will be stored to allow look-ups without the need for an additional query.
+To reduce on the number of queries required to the ComicVineAPI. Queries will be cached in Cassandra. 
+E.g. Publisher ID's will be stored to allow look-ups without the need for an additional query. Cassandra has been selected over MySQL due to large volume batch writes / reads that MySQL cannot consistently write/read.
 
 Current Maven Dependancies
 =====================
